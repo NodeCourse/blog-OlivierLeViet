@@ -3,12 +3,15 @@ html
         title Olivier Tran
         link(rel="stylesheet", href="/css/styles.css")
     body
-        p hello fyyy
+        h1 Hello Bienvenue
+        for article in articles
+            h3 #{article.title}
+            p #{article.text}
 
-        // for post in post
-        //     article
-        //         h1 #{post.title}
-        //         form(method="post", action="/api/post/" + post.id + "/upvote")
-        //             button(type="submit") upvote
-        //         form(method="post", action="/api/post/" + post.id + "/downvote")
-        //             button(type="submit") downvote
+        div(class="container")
+            form(method="post", action="/api/post")
+                input(type="text", name="title", placeholder="Titre")
+                input(type="text", name="text", placeholder="Commentaire")
+
+                button(type="submit") Post
+

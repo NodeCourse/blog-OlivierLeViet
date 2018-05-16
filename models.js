@@ -40,3 +40,39 @@ app.post('/api/post/:postID/downvote', (req, res) => {
         .create({action: 'up', postID: req.params.postID})
         .then(() => res.redirect('/'))
 });
+
+
+
+
+
+
+
+
+// créer une table user dans la db connecté plus haut
+const Article = db.define('article', {
+    title: {type: Sequelize.STRING},
+    text: {type: Sequelize.STRING}
+});
+
+
+// créer des articles
+Article
+    .sync()
+    .then(() => {
+        Article.create({
+            title: 'Bim ba bom',
+            text: 'bonjour ceci est un test'
+        });
+    })
+    .then(() => {
+        Article.create({
+            title: 'spagetti',
+            text: 'pizza ravioli'
+        });
+    })
+    .then(() => {
+        return Article.findAll();
+    })
+    .then((articles) => {
+        console.log(articles);
+    });
